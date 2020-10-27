@@ -2,7 +2,7 @@
     <div class="flex flex-col items-center py-4">
         <NewPost />
 
-        <Post v-for="post in posts.data" :key="post.data.post_id" :post="post" />
+        <Post v-for="post in posts.data" :key="post.data.post_id" :post="post"  />
     </div>
 </template>
 
@@ -26,12 +26,11 @@ import Post from '../components/Post';
 
         mounted() {
             axios.get('/api/posts')
-                .then(response => {
-                    this.posts = response.data;
-                })
-                .catch(error => {
+                .then(res => {
+                    this.posts = res.data;
+                }).catch(error => {
                     console.log('Unable to fetch posts');
-                });
+            });
         }
     }
 </script>

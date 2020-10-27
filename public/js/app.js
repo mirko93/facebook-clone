@@ -2077,7 +2077,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Post",
-  props: ['post']
+  props: ["post"]
 });
 
 /***/ }),
@@ -2138,8 +2138,8 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    axios.get('/api/posts').then(function (response) {
-      _this.posts = response.data;
+    axios.get('/api/posts').then(function (res) {
+      _this.posts = res.data;
     })["catch"](function (error) {
       console.log('Unable to fetch posts');
     });
@@ -38073,7 +38073,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "bg-white rounded shadow w-2/3 mt-6 overflow-hidden" },
+    { staticClass: "w-2/3 mt-6 overflow-hidden bg-white rounded shadow" },
     [
       _c("div", { staticClass: "flex flex-col p-4" }, [
         _c("div", { staticClass: "flex items-center" }, [
@@ -38087,7 +38087,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "text-sm text-gray-600" }, [
-              _vm._v("12 mins")
+              _vm._v(_vm._s(_vm.post.data.attributes.posted_at))
             ])
           ])
         ]),
@@ -38097,17 +38097,24 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _vm._m(1),
+      _vm.post.data.attributes.image
+        ? _c("div", { staticClass: "w-full" }, [
+            _c("img", {
+              staticClass: "w-full",
+              attrs: { src: _vm.post.data.attributes.image, alt: "post image" }
+            })
+          ])
+        : _vm._e(),
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "px-4 pt-2 flex justify-between text-gray-700 text-sm" },
+        { staticClass: "flex justify-between px-4 pt-2 text-sm text-gray-700" },
         [
           _c("div", { staticClass: "flex" }, [
             _c(
               "svg",
               {
-                staticClass: "fill-current w-5 h-5",
+                staticClass: "w-5 h-5 fill-current",
                 attrs: {
                   xmlns: "http://www.w3.org/2000/svg",
                   viewBox: "0 0 24 24"
@@ -38126,25 +38133,25 @@ var render = function() {
             _c("p", [_vm._v("Jane Smith and 137 others")])
           ]),
           _vm._v(" "),
-          _vm._m(2)
+          _vm._m(1)
         ]
       ),
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "flex justify-between border-1 border-gray-400 m-4" },
+        { staticClass: "flex justify-between m-4 border-gray-400 border-1" },
         [
           _c(
             "button",
             {
               staticClass:
-                "flex justify-center py-2 rounded-lg text-sm text-gray-700 w-full hover:bg-gray-200"
+                "flex justify-center w-full py-2 text-sm text-gray-700 rounded-lg hover:bg-gray-200"
             },
             [
               _c(
                 "svg",
                 {
-                  staticClass: "fill-current w-5 h-5",
+                  staticClass: "w-5 h-5 fill-current",
                   attrs: {
                     xmlns: "http://www.w3.org/2000/svg",
                     viewBox: "0 0 24 24"
@@ -38168,13 +38175,13 @@ var render = function() {
             "button",
             {
               staticClass:
-                "flex justify-center py-2 rounded-lg text-sm text-gray-700 w-full hover:bg-gray-200"
+                "flex justify-center w-full py-2 text-sm text-gray-700 rounded-lg hover:bg-gray-200"
             },
             [
               _c(
                 "svg",
                 {
-                  staticClass: "fill-current w-5 h-5",
+                  staticClass: "w-5 h-5 fill-current",
                   attrs: {
                     xmlns: "http://www.w3.org/2000/svg",
                     viewBox: "0 0 24 24"
@@ -38205,26 +38212,11 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "w-8" }, [
       _c("img", {
-        staticClass: "w-8 h-8 object-cover rounded-full",
+        staticClass: "object-cover w-8 h-8 rounded-full",
         attrs: {
           src:
             "https://cdn.pixabay.com/photo/2014/07/09/10/04/man-388104_960_720.jpg",
           alt: "profile image for user"
-        }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "w-full" }, [
-      _c("img", {
-        staticClass: "w-full",
-        attrs: {
-          src:
-            "https://images.pexels.com/photos/132037/pexels-photo-132037.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-          alt: "post image"
         }
       })
     ])
@@ -38438,7 +38430,7 @@ function normalizeComponent (
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /*!
-  * vue-router v3.4.6
+  * vue-router v3.4.8
   * (c) 2020 Evan You
   * @license MIT
   */
@@ -38678,13 +38670,15 @@ function isObjectEqual (a, b) {
 
   // handle null value #1566
   if (!a || !b) { return a === b }
-  var aKeys = Object.keys(a);
-  var bKeys = Object.keys(b);
+  var aKeys = Object.keys(a).sort();
+  var bKeys = Object.keys(b).sort();
   if (aKeys.length !== bKeys.length) {
     return false
   }
-  return aKeys.every(function (key) {
+  return aKeys.every(function (key, i) {
     var aVal = a[key];
+    var bKey = bKeys[i];
+    if (bKey !== key) { return false }
     var bVal = b[key];
     // query values can be null and undefined
     if (aVal == null || bVal == null) { return aVal === bVal }
@@ -40107,14 +40101,15 @@ function matchRoute (
   path,
   params
 ) {
-  var m;
   try {
-    m = decodeURI(path).match(regex);
+    path = decodeURI(path);
   } catch (err) {
     if (true) {
       warn(false, ("Error decoding \"" + path + "\". Leaving it intact."));
     }
   }
+
+  var m = path.match(regex);
 
   if (!m) {
     return false
@@ -40316,7 +40311,17 @@ function scrollToPosition (shouldScroll, position) {
   }
 
   if (position) {
-    window.scrollTo(position.x, position.y);
+    // $flow-disable-line
+    if ('scrollBehavior' in document.documentElement.style) {
+      window.scrollTo({
+        left: position.x,
+        top: position.y,
+        // $flow-disable-line
+        behavior: shouldScroll.behavior
+      });
+    } else {
+      window.scrollTo(position.x, position.y);
+    }
   }
 }
 
@@ -41481,7 +41486,7 @@ function createHref (base, fullPath, mode) {
 }
 
 VueRouter.install = install;
-VueRouter.version = '3.4.6';
+VueRouter.version = '3.4.8';
 VueRouter.isNavigationFailure = isNavigationFailure;
 VueRouter.NavigationFailureType = NavigationFailureType;
 
@@ -53972,23 +53977,23 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var _views_NewsFeed__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./views/NewsFeed */ "./resources/js/views/NewsFeed.vue");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var _views_NewsFeed__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./views/NewsFeed */ "./resources/js/views/NewsFeed.vue");
 
 
 
-
-vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]);
-/* harmony default export */ __webpack_exports__["default"] = (new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
+/* harmony default export */ __webpack_exports__["default"] = (new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: 'history',
   routes: [{
     path: '/',
+    component: _views_NewsFeed__WEBPACK_IMPORTED_MODULE_2__["default"],
     name: 'home',
-    component: _views_NewsFeed__WEBPACK_IMPORTED_MODULE_3__["default"]
+    meta: {
+      title: 'News Feed'
+    }
   }]
 }));
 

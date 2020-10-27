@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Carbon\Carbon;
 use App\Http\Resources\User as UserResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -22,6 +23,8 @@ class Post extends JsonResource
                 'attributes' => [
                     'posted_by' => new UserResource($this->user),
                     'body' => $this->body,
+                    'image' => $this->image,
+                    'posted_at' => Carbon::parse($this->created_at)->diffForHumans(),
                 ]
             ],
 

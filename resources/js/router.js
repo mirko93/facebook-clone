@@ -1,17 +1,19 @@
-import { startCase } from 'lodash';
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-import NewsFeed from './views/NewsFeed';
+import Vue from "vue";
+import VueRouter from "vue-router";
+import NewsFeed from "./views/NewsFeed";
 
 Vue.use(VueRouter);
 
 export default new VueRouter({
-    mode: 'history',
+   mode: 'history',
     routes: [
         {
             path: '/',
-            name: 'home',
             component: NewsFeed,
+            name: 'home',
+            meta: {
+                title: 'News Feed'
+            }
         }
     ]
 });

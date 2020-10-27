@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Post;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -31,6 +32,8 @@ class RetrievePostTest extends TestCase
                             'post_id' => $posts->last()->id,
                             'attributes' => [
                                 'body' => $posts->last()->body,
+                                'image' => $posts->last()->image,
+                                'posted_at' => Carbon::parse($posts->last()->created_at)->diffForHumans(),
                             ]
                         ]
                     ],
@@ -40,6 +43,8 @@ class RetrievePostTest extends TestCase
                             'post_id' => $posts->first()->id,
                             'attributes' => [
                                 'body' => $posts->first()->body,
+                                'image' => $posts->first()->image,
+                                'posted_at' => Carbon::parse($posts->first()->created_at)->diffForHumans(),
                             ]
                         ]
                     ]
