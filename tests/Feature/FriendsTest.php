@@ -26,6 +26,7 @@ class FriendsTest extends TestCase
         ])->assertStatus(200);
 
         $friendRequest = Friend::first();
+
         $this->assertNotNull($friendRequest);
         $this->assertEquals($anotherUser->id, $friendRequest->friend_id);
         $this->assertEquals($user->id, $friendRequest->user_id);
@@ -89,6 +90,9 @@ class FriendsTest extends TestCase
                 'friend_request_id' => $friendRequest->id,
                 'attributes' => [
                     'confirmed_at' => $friendRequest->confirmed_at->diffForHumans(),
+                    'friend_id' => $friendRequest->friend_id,
+                    'user_id' => $friendRequest->user_id,
+                    
                 ]
             ],
             'links' => [
