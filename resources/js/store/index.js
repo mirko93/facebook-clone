@@ -3,6 +3,7 @@ import VueX from 'vuex';
 import User from './modules/user';
 import Title from './modules/title';
 import Profile from './modules/profile';
+import Posts from './modules/posts';
 
 Vue.use(VueX);
 
@@ -11,5 +12,6 @@ export default new VueX.Store({
         User,
         Title,
         Profile,
+        Posts,
     }
 });
