@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="76dfa470-a930-45b7-aabd-356e5ee4e99a" name="Default Changelist" comment="" />
+    <list default="true" id="76dfa470-a930-45b7-aabd-356e5ee4e99a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Post.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Post.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/store/modules/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/store/modules/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -175,6 +181,8 @@
       <workItem from="1603720714240" duration="12540000" />
       <workItem from="1603798208970" duration="7000" />
       <workItem from="1603864469983" duration="357000" />
+      <workItem from="1604833666821" duration="2655000" />
+      <workItem from="1604836775718" duration="5180000" />
     </task>
     <servers />
   </component>
@@ -182,14 +190,23 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="242" y="381" width="513" height="352" key="#Notifications" timestamp="1604836785385">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="242" y="381" width="513" height="352" key="#Notifications/0.27.1920.1053@0.27.1920.1053" timestamp="1604836785385" />
+    <state x="386" y="225" width="395" height="664" key="#com.intellij.ide.util.MemberChooser" timestamp="1604844705451">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="386" y="225" width="395" height="664" key="#com.intellij.ide.util.MemberChooser/0.27.1920.1053@0.27.1920.1053" timestamp="1604844705451" />
     <state x="740" y="295" key="FileChooserDialogImpl" timestamp="1603720790848">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="740" y="295" key="FileChooserDialogImpl/0.0.1920.1080/279.-768.1360.768@0.0.1920.1080" timestamp="1603720790848" />
-    <state x="662" y="99" key="SettingsEditor" timestamp="1603723596382">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state x="662" y="124" width="992" height="737" key="SettingsEditor" timestamp="1604837861383">
+      <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="662" y="99" key="SettingsEditor/0.0.1920.1080/279.-768.1360.768@0.0.1920.1080" timestamp="1603723596382" />
+    <state x="662" y="124" width="992" height="737" key="SettingsEditor/0.27.1920.1053@0.27.1920.1053" timestamp="1604837861383" />
     <state width="498" height="446" key="SwitcherDM" timestamp="1603720781050">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -198,9 +215,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="668" y="115" width="583" height="849" key="find.popup/0.0.1920.1080/279.-768.1360.768@0.0.1920.1080" timestamp="1603720828783" />
-    <state x="623" y="235" width="672" height="678" key="search.everywhere.popup" timestamp="1603724135734">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state x="623" y="256" width="672" height="662" key="search.everywhere.popup" timestamp="1604844626337">
+      <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="623" y="235" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080/279.-768.1360.768@0.0.1920.1080" timestamp="1603724135734" />
+    <state x="623" y="256" width="672" height="662" key="search.everywhere.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1604844626337" />
   </component>
 </project>

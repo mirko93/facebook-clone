@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostCommentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
@@ -28,6 +29,7 @@ Route::middleware('auth:api')->group(function () {
     Route::apiResources([
         '/posts' => PostController::class,
         '/posts/{post}/like' => PostLikeController::class,
+        '/posts/{post}/comment' => PostCommentController::class,
         '/users' => UserController::class,
         '/users/{user}/posts' => UserPostController::class,
         '/friend-request' => FriendRequestController::class,
