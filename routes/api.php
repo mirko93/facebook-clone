@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PostCommentController;
+use App\Http\Controllers\UserImageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
@@ -34,5 +35,6 @@ Route::middleware('auth:api')->group(function () {
         '/users/{user}/posts' => UserPostController::class,
         '/friend-request' => FriendRequestController::class,
         '/friend-request-response' => FriendRequestResponseController::class,
+        '/user-images' => UserImageController::class,
     ]);
 });
