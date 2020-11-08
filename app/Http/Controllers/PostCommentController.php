@@ -2,17 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\ValidationErrorException;
 use App\Http\Resources\CommentCollection;
 use App\Models\Post;
-use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class PostCommentController extends Controller
 {
     public function store(Post $post)
     {
-        $data = \request()->validate([
-            'body' => '',
-        ]);
+        try {
+            $data = request()->validate([
+                'body' => 'required',
+            ]);
+        } catch (ValidationException $e) {
+            throw new ValidationErrorException(json_encode($e->errors()));
+        }
 
         $post->comments()->create(array_merge($data, [
             'user_id' => auth()->user()->id,

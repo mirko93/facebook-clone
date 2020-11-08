@@ -6,7 +6,6 @@ use Tests\TestCase;
 use App\Models\User;
 use App\Models\Friend;
 use Carbon\Carbon;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class FriendsTest extends TestCase
@@ -111,7 +110,7 @@ class FriendsTest extends TestCase
                     'confirmed_at' => $friendRequest->confirmed_at->diffForHumans(),
                     'friend_id' => $friendRequest->friend_id,
                     'user_id' => $friendRequest->user_id,
-                    
+
                 ]
             ],
             'links' => [
@@ -226,7 +225,7 @@ class FriendsTest extends TestCase
             ]);
 
         $responseString = json_decode($response->getContent(), true);
-        
+
         $this->assertArrayHasKey('friend_id', $responseString['errors']['meta']);
     }
 
@@ -240,7 +239,7 @@ class FriendsTest extends TestCase
             ])->assertStatus(422);
 
         $responseString = json_decode($response->getContent(), true);
-    
+
         $this->assertArrayHasKey('user_id', $responseString['errors']['meta']);
         $this->assertArrayHasKey('status', $responseString['errors']['meta']);
     }
@@ -254,7 +253,7 @@ class FriendsTest extends TestCase
             ])->assertStatus(422);
 
         $responseString = json_decode($response->getContent(), true);
-    
+
         $this->assertArrayHasKey('user_id', $responseString['errors']['meta']);
     }
 
