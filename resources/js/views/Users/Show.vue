@@ -2,12 +2,22 @@
     <div class="flex flex-col items-center" v-if="status.user === 'success' && user">
         <div class="relative mb-8">
             <div class="z-10 h-64 overflow-hidden w-100">
-                <img class="object-cover w-full" src="https://images.unsplash.com/photo-1593642634524-b40b5baae6bb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1489&q=80" alt="user backgroud image">
+                <UploadableImage
+                    image-width="1500"
+                    image-height="300"
+                    location="cover"
+                    :user-image="user.data.attributes.cover_image" />
             </div>
 
             <div class="absolute bottom-0 left-0 z-20 flex items-center ml-12 -mb-8">
                 <div class="w-32">
-                    <img src="https://cdn.pixabay.com/photo/2014/07/09/10/04/man-388104_960_720.jpg" alt="profile image for user" class="object-cover w-32 h-32 border-4 border-gray-200 rounded-full shadow-lg">
+                    <UploadableImage
+                        alt="profile user image"
+                        class="object-cover w-32 h-32 border-4 border-gray-200 rounded-full shadow-lg"
+                        image-width="1500"
+                        image-height="300"
+                        location="profile"
+                        :user-image="user.data.attributes.profile_image" />
                 </div>
                 <p class="ml-4 text-2xl text-gray-100">{{ user.data.attributes.name }}</p>
             </div>
@@ -41,6 +51,7 @@
 
 <script>
 import Post from '../../components/Post';
+import UploadableImage from "../../components/UploadableImage";
 import { mapGetters } from 'vuex';
 
     export default {
@@ -48,6 +59,7 @@ import { mapGetters } from 'vuex';
 
         components: {
             Post,
+            UploadableImage,
         },
 
         mounted() {

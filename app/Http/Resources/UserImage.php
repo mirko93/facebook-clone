@@ -20,9 +20,9 @@ class UserImage extends JsonResource
                 'user_image_id' => $this->id,
                 'attributes' => [
                     'path' => url($this->path),
-                    'width' => $this->path,
-                    'height' => $this->path,
-                    'location' => $this->path,
+                    'width' => $this->width,
+                    'height' => $this->height,
+                    'location' => $this->location,
                 ]
             ],
             'links' => [

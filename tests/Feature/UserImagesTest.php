@@ -24,38 +24,35 @@ class UserImagesTest extends TestCase
     public function images_can_be_uploaded()
     {
         $this->withoutExceptionHandling();
-
         $this->actingAs($user = User::factory()->create(), 'api');
 
         $file = UploadedFile::fake()->image('user-image.jpg');
 
         $response = $this->post('/api/user-images', [
-           'image' => $file,
-           'width' => 850,
-           'height' => 300,
-           'location' => 'cover',
+            'image' => $file,
+            'width' => 850,
+            'height' => 300,
+            'location' => 'cover',
         ])->assertStatus(201);
 
         Storage::disk('public')->assertExists('user-images/'.$file->hashName());
         $userImage = UserImage::first();
-
         $this->assertEquals('user-images/'.$file->hashName(), $userImage->path);
         $this->assertEquals('850', $userImage->width);
         $this->assertEquals('300', $userImage->height);
         $this->assertEquals('cover', $userImage->location);
         $this->assertEquals($user->id, $userImage->user_id);
-
         $response->assertJson([
-           'data' => [
-               'type' => 'user-images',
-               'user_image_id' => $userImage->id,
-               'attributes' => [
-                   'path' => url($userImage->path),
-                   'width' => $userImage->path,
-                   'height' => $userImage->path,
-                   'location' => $userImage->path,
-               ]
-           ],
+            'data' => [
+                'type' => 'user-images',
+                'user_image_id' => $userImage->id,
+                'attributes' => [
+                    'path' => url($userImage->path),
+                    'width' => $userImage->width,
+                    'height' => $userImage->height,
+                    'location' => $userImage->location,
+                ]
+            ],
             'links' => [
                 'self' => url('/users/'.$user->id),
             ]
@@ -74,7 +71,6 @@ class UserImagesTest extends TestCase
             'height' => 300,
             'location' => 'cover',
         ])->assertStatus(201);
-
         $this->post('/api/user-images', [
             'image' => $file,
             'width' => 850,
@@ -83,7 +79,6 @@ class UserImagesTest extends TestCase
         ])->assertStatus(201);
 
         $response = $this->get('/api/users/'.$user->id);
-        $userImage = UserImage::first();
 
         $response->assertJson([
             'data' => [
@@ -95,17 +90,17 @@ class UserImagesTest extends TestCase
                             'type' => 'user-images',
                             'user_image_id' => 1,
                             'attributes' => []
-                        ]
+                        ],
                     ],
                     'profile_image' => [
                         'data' => [
                             'type' => 'user-images',
                             'user_image_id' => 2,
                             'attributes' => []
-                        ]
-                    ]
+                        ],
+                    ],
                 ]
-            ]
+            ],
         ]);
     }
 }
