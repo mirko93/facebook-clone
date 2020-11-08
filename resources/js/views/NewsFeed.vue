@@ -27,8 +27,8 @@ import Post from '../components/Post';
 
         computed: {
             ...mapGetters({
-                posts: 'newsPosts',
-                newsPostsStatus: 'newsPostsStatus',
+                posts: 'posts',
+                newsPostsStatus: 'postsStatus',
             })
         }
     }

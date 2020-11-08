@@ -13,18 +13,18 @@
             </div>
 
             <div class="absolute flex items-center bottom-0 right-0 mb-4 mr-12 z-20">
-                <button v-if="friendButtonText && friendButtonText !== 'Accept'" 
-                        class="py-1 px-3 bg-gray-400 rounded" 
+                <button v-if="friendButtonText && friendButtonText !== 'Accept'"
+                        class="py-1 px-3 bg-gray-400 rounded"
                         @click="$store.dispatch('sendFriendRequest', $route.params.userId)">
                     {{ friendButtonText }}
                 </button>
-                <button v-if="friendButtonText && friendButtonText === 'Accept'" 
-                        class="mr-2 py-1 px-3 bg-blue-500 rounded" 
+                <button v-if="friendButtonText && friendButtonText === 'Accept'"
+                        class="mr-2 py-1 px-3 bg-blue-500 rounded"
                         @click="$store.dispatch('acceptFriendRequest', $route.params.userId)">
                     Accept
                 </button>
-                <button v-if="friendButtonText && friendButtonText === 'Accept'" 
-                        class="py-1 px-3 bg-gray-400 rounded" 
+                <button v-if="friendButtonText && friendButtonText === 'Accept'"
+                        class="py-1 px-3 bg-gray-400 rounded"
                         @click="$store.dispatch('ignoreFriendRequest', $route.params.userId)">
                     Ignore
                 </button>
@@ -35,7 +35,7 @@
 
         <div v-else-if="posts.length < 1">No posts found. Get started</div>
 
-        <Post v-else v-for="post in posts.data" :key="post.data.post_id" :post="post" />
+        <Post v-else v-for="(post, postKey) in posts.data" :key="postKey" :post="post" />
     </div>
 </template>
 
