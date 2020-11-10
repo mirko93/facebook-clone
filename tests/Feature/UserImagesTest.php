@@ -65,12 +65,14 @@ class UserImagesTest extends TestCase
         $this->withoutExceptionHandling();
         $this->actingAs($user = User::factory()->create(), 'api');
         $file = UploadedFile::fake()->image('user-image.jpg');
+
         $this->post('/api/user-images', [
             'image' => $file,
             'width' => 850,
             'height' => 300,
             'location' => 'cover',
         ])->assertStatus(201);
+
         $this->post('/api/user-images', [
             'image' => $file,
             'width' => 850,
