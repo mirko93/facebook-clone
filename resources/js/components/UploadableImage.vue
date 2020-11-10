@@ -1,14 +1,15 @@
 <template>
     <div>
-        <img class="object-cover w-full"
-             :src="imageObject.data.attributes.path"
-             alt="user background cover image"
-             ref="userImage">
+        <img :src="userImage.data.attributes.path"
+             class="classes"
+             ref="userImage"
+             :alt="alt">
     </div>
 </template>
 
 <script>
 import Dropzone from 'dropzone';
+import { mapGetters } from 'vuex';
 
 export default {
     name: "UploadableImage",
@@ -18,20 +19,27 @@ export default {
         'imageWidth',
         'imageHeight',
         'location',
+        'classes',
+        'alt'
     ],
 
     data: () => {
         return {
             dropzone: null,
-            uploadedImage: null,
         }
     },
 
     mounted() {
-        this.dropzone = new Dropzone(this.$refs.userImage, this.settings);
+        if (this.authUser.data.user_id.toString() === this.$route.params.userId) {
+            this.dropzone = new Dropzone(this.$refs.userImage, this.settings);
+        }
     },
 
     computed: {
+        ...mapGetters({
+            authUser: 'authUser',
+        }),
+
         settings() {
             return {
                 paramName: 'image',
@@ -46,12 +54,11 @@ export default {
                     'X-CSRF-TOKEN': document.head.querySelector('meta[name=csrf-token]').content,
                 },
                 success: (e, res) => {
-                    this.uploadedImage = res;
+                    this.$store.dispatch('fetchAuthUser');
+                    this.$store.dispatch('fetchUser', this.$route.params.userId);
+                    this.$store.dispatch('fetchUserPosts', this.$route.params.userId);
                 }
             };
-        },
-        imageObject() {
-            return this.uploadedImage || this.userImage;
         }
     }
 }

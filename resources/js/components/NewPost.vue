@@ -3,16 +3,16 @@
         <div class="flex justify-between items-center">
             <div>
                 <div class="w-8">
-                    <img src="https://cdn.pixabay.com/photo/2014/07/09/10/04/man-388104_960_720.jpg" alt="profile image for user" class="w-8 h-8 object-cover rounded-full">
+                    <img :src="authUser.data.attributes.profile_image.data.attributes.path" alt="profile image for user" class="w-8 h-8 object-cover rounded-full">
                 </div>
             </div>
             <div class="flex-1 flex mx-4">
                 <input v-model="postMessage" type="text" name="body" class="w-full pl-4 h-8 bg-gray-200 rounded-full focus:outline-none focus:shadow-outline text-sm" placeholder="Add a post">
 
                 <transition name="fade">
-                    <button 
+                    <button
                         v-if="postMessage"
-                        @click="$store.dispatch('postMessage')" 
+                        @click="$store.dispatch('postMessage')"
                         class="bg-gray-200 ml-2 px-3 rounded-full">Post
                     </button>
                 </transition>
@@ -29,11 +29,16 @@
 
 <script>
 import _ from 'lodash';
+import { mapGetters } from 'vuex';
 
     export default {
         name: "NewPost",
 
         computed: {
+            ...mapGetters({
+                authUser: 'authUser',
+            }),
+
             postMessage: {
                 get() {
                     return this.$store.getters.postMessage;

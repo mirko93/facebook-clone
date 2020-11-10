@@ -42,26 +42,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function friends()
-    {
-        return $this->belongsToMany(User::class, 'friends', 'friend_id', 'user_id');
-    }
-
-    public function posts()
-    {
-        return $this->hasMany(Post::class);
-    }
-
-    public function likedPosts()
-    {
-        return $this->belongsToMany(Post::class, 'likes', 'user_id', 'post_id');
-    }
-
-    public function images()
-    {
-        return $this->hasMany(UserImage::class);
-    }
-
     public function coverImage()
     {
         return $this->hasOne(UserImage::class)
@@ -80,5 +60,25 @@ class User extends Authenticatable
             ->withDefault(function ($userImage) {
                 $userImage->path = "user-images/profile-default-image.jpeg";
             });
+    }
+
+    public function friends()
+    {
+        return $this->belongsToMany(User::class, 'friends', 'friend_id', 'user_id');
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    public function likedPosts()
+    {
+        return $this->belongsToMany(Post::class, 'likes', 'user_id', 'post_id');
+    }
+
+    public function images()
+    {
+        return $this->hasMany(UserImage::class);
     }
 }

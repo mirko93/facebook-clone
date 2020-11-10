@@ -28,6 +28,7 @@
     },
     "dependencies": {
         "dropzone": "^5.7.2",
-        "tailwindcss": "^1.9.2"
+        "tailwindcss": "^1.9.2",
+        "vue2-dropzone": "^3.6.0"
     }
 }

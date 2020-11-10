@@ -3,20 +3,22 @@
         <div class="relative mb-8">
             <div class="z-10 h-64 overflow-hidden w-100">
                 <UploadableImage
-                    image-width="1500"
-                    image-height="300"
+                    image-width="1200"
+                    image-height="500"
                     location="cover"
+                    alt="user background image"
+                    classes="object-cover w-full"
                     :user-image="user.data.attributes.cover_image" />
             </div>
 
             <div class="absolute bottom-0 left-0 z-20 flex items-center ml-12 -mb-8">
                 <div class="w-32">
                     <UploadableImage
-                        alt="profile user image"
-                        class="object-cover w-32 h-32 border-4 border-gray-200 rounded-full shadow-lg"
-                        image-width="1500"
-                        image-height="300"
+                        image-width="750"
+                        image-height="750"
                         location="profile"
+                        alt="user profile image"
+                        classes="object-cover w-32 h-32 border-4 border-gray-400"
                         :user-image="user.data.attributes.profile_image" />
                 </div>
                 <p class="ml-4 text-2xl text-gray-100">{{ user.data.attributes.name }}</p>
