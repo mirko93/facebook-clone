@@ -24,6 +24,22 @@
                 </button>
             </div>
         </div>
+
+        <div class="dropzone-previews">
+            <div id="dz-template" class="hidden">
+                <div class="dz-preview dz-file-preview mt-4">
+                    <div class="dz-details">
+                        <img data-dz-thumbnail class="w-32 h-32">
+
+                        <button data-dz-remove class="text-xs">Remove</button>
+                    </div>
+
+                    <div class="dz-progress">
+                        <span class="dz-upload" data-dz-upload></span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -66,6 +82,9 @@ import Dropzone from 'dropzone';
                     acceptedFiles: 'image/*',
                     clickable: '.dz-clickable',
                     autoProcessQueue: false,
+                    maxFiles: 1,
+                    previewsContainer: '.dropzone-previews',
+                    previewTemplate: document.querySelector('#dz-template').innerHTML,
                     params: {
                         'width': 1000,
                         'height': 1000,
@@ -77,7 +96,12 @@ import Dropzone from 'dropzone';
                         formData.append('body', this.$store.getters.postMessage);
                     },
                     success: (event, res) => {
-                        alert('success');
+                        this.dropzone.removeAllFiles();
+                        this.$store.commit('pushPost', res);
+                    },
+                    maxfilesexceeded: (file) => {
+                        this.dropzone.removeAllFiles();
+                        this.dropzone.addFile(file);
                     }
                 };
             },
@@ -90,6 +114,8 @@ import Dropzone from 'dropzone';
                 } else {
                     this.$store.dispatch('postMessage');
                 }
+
+                this.$store.commit('updateMessage', '');
             }
         }
     }
