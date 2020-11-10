@@ -10,7 +10,7 @@ class UserImageController extends Controller
 {
     public function store()
     {
-        $data = \request()->validate([
+        $data = request()->validate([
             'image' => '',
             'width' => '',
             'height' => '',
@@ -21,7 +21,7 @@ class UserImageController extends Controller
 
         Image::make($data['image'])
             ->fit($data['width'], $data['height'])
-            ->save(storage_path('app/public/user-image'.$data['image']->hasName()));
+            ->save(storage_path('app/public/user-images/'.$data['image']->hashName()));
 
         $userImage = auth()->user()->images()->create([
             'path' => $image,

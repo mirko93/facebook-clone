@@ -2,9 +2,9 @@
 
 namespace App\Http\Resources;
 
-use App\Http\Resources\Friend as FriendResource;
-use App\Http\Resources\UserImage as UserImageResource;
 use App\Models\Friend;
+use App\Http\Resources\UserImage as UserImageResource;
+use App\Http\Resources\Friend as FriendResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class User extends JsonResource
